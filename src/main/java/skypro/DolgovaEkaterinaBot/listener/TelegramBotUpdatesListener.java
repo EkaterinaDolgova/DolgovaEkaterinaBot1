@@ -28,15 +28,18 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
     @Override
     public int process(List<Update> updates) {
-        TelegramBot bot = new TelegramBot("BOT_TOKEN");
+
         updates.forEach(update -> {
             logger.info("Processing update: {}", update);
             // Process your updates here
+            long chatId = update.message().chat().id();
+           if (update.message().text().equals("/start")){
+                SendResponse response = telegramBot.execute(new SendMessage(chatId, "Привет! Я бот!"));
+            }
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
 
-        long chatId = update.message().chat().id();
-        SendResponse response = bot.execute(new SendMessage(chatId, "Hello!"));
+
     }
 
 }
