@@ -15,13 +15,6 @@ public class notification_task {
     private String textY;
     private LocalDateTime datetime;
 
-   /* public notification_task(Long id, Integer id_chat, String textY, LocalDateTime datetime) {
-        this.id = id;
-        this.id_chat = id_chat;
-        this.textY = textY;
-        this.datetime = datetime;
-    }*/
-
     public notification_task() {
 
     }
