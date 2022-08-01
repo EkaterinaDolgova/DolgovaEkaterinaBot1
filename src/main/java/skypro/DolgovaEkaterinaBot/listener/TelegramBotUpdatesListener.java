@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import skypro.DolgovaEkaterinaBot.service.NotificationService;
 
 import javax.annotation.PostConstruct;
+
 import skypro.DolgovaEkaterinaBot.model.Notification;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -52,21 +54,24 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 System.out.println(datetime);
                 String textY = matcher.group(3);
                 System.out.println(textY);
-                LocalDateTime dateTime= LocalDateTime.parse(datetime, DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
-                Notification notification = new Notification(chatId,textY,dateTime);
-                System.out.println(dateTime);System.out.println(notification);
+                LocalDateTime dateTime = LocalDateTime.parse(datetime, DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
+                Notification notification = new Notification(chatId, textY, dateTime);
+                System.out.println(dateTime);
+                System.out.println(notification);
                 notificationService.creatNotification(notification);
             }
 
-           if (update.message().text().equals("/start")){
+            if (update.message().text().equals("/start")) {
                 SendResponse response = telegramBot.execute(new SendMessage(chatId, "Привет! Я бот!"));
             }
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
+
     @Scheduled(fixedDelay = 1_000L)
     public void run() {
-        System.out.println(notificationService.messangeChatId());System.out.println(notificationService.messangeTexty());
-        SendResponse response = telegramBot.execute(new SendMessage(notificationService.messangeChatId(),notificationService.messangeTexty()));
+        System.out.println(notificationService.messangeChatId());
+        System.out.println(notificationService.messangeTexty());
+        SendResponse response = telegramBot.execute(new SendMessage(notificationService.messangeChatId(), notificationService.messangeTexty()));
     }
 }

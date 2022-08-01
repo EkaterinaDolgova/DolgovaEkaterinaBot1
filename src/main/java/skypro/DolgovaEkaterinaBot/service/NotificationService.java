@@ -15,7 +15,8 @@ public class NotificationService {
     public NotificationService(NotificationRepository notificationRepository) {
         this.notificationRepository = notificationRepository;
     }
-@Transactional
+
+    @Transactional
     public Notification creatNotification(Notification notification) {
         System.out.println("Попали в сохранение");
         return notificationRepository.save(notification);
