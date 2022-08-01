@@ -67,7 +67,6 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
-
     @Scheduled(fixedDelay = 1_000L)
     public void run() {
         System.out.println(notificationService.messangeChatId());
