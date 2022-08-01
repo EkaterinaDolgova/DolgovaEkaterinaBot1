@@ -2,20 +2,28 @@ package skypro.DolgovaEkaterinaBot.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-public class notification_task {
+public class Notification {
     @Id
-    @GeneratedValue
+  //  @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer id_chat;
+    private Long id_chat;
     private String textY;
     private LocalDateTime datetime;
 
-    public notification_task() {
+    public Notification(Long id_chat,String textY,LocalDateTime datetime) {
+        this.id_chat=id_chat;
+        this.textY=textY;
+        this.datetime=datetime;
+    }
+
+    public Notification() {
 
     }
 
@@ -27,11 +35,11 @@ public class notification_task {
         this.id = id;
     }
 
-    public Integer getId_chat() {
+    public Long getId_chat() {
         return id_chat;
     }
 
-    public void setId_chat(Integer id_chat) {
+    public void setId_chat(Long id_chat) {
         this.id_chat = id_chat;
     }
 
@@ -52,7 +60,7 @@ public class notification_task {
     }
 
     public String toString() {
-        return "notification_task{" +
+        return "Notification{" +
                 "id=" + id +
                 ", id_chat='" + id_chat + '\'' +
                 ", textY='" + textY + '\'' +
@@ -64,7 +72,7 @@ public class notification_task {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        notification_task task = (notification_task) o;
+        Notification task = (Notification) o;
         return id_chat == task.id_chat && id.equals(task.id) && textY.equals(task.textY)&& datetime.equals(task.datetime);
     }
 

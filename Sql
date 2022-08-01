@@ -4,3 +4,5 @@ Create table notification_task (
     textY varchar,
     datetime timestamp
 );
+
+Select * from notification_task;
