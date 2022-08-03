@@ -10,17 +10,16 @@ import java.util.Objects;
 @Entity
 public class Notification {
     @Id
-  //  @GeneratedValue
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long id_chat;
     private String textY;
     private LocalDateTime datetime;
 
-    public Notification(Long id_chat,String textY,LocalDateTime datetime) {
-        this.id_chat=id_chat;
-        this.textY=textY;
-        this.datetime=datetime;
+    public Notification(Long id_chat, String textY, LocalDateTime datetime) {
+        this.id_chat = id_chat;
+        this.textY = textY;
+        this.datetime = datetime;
     }
 
     public Notification() {
@@ -73,11 +72,11 @@ public class Notification {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Notification task = (Notification) o;
-        return id_chat == task.id_chat && id.equals(task.id) && textY.equals(task.textY)&& datetime.equals(task.datetime);
+        return id_chat == task.id_chat && id.equals(task.id) && textY.equals(task.textY) && datetime.equals(task.datetime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, id_chat, textY,datetime);
+        return Objects.hash(id, id_chat, textY, datetime);
     }
 }

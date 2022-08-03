@@ -21,6 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Service
 public class TelegramBotUpdatesListener implements UpdatesListener {
@@ -67,10 +68,8 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
-    @Scheduled(fixedDelay = 1_000L)
+    @Scheduled(cron = "0 0/1 * * * *")
     public void run() {
-        System.out.println(notificationService.messangeChatId());
-        System.out.println(notificationService.messangeTexty());
-        SendResponse response = telegramBot.execute(new SendMessage(notificationService.messangeChatId(), notificationService.messangeTexty()));
+        notificationService.findByDatetime().stream().map(n->new SendMessage(n.getId_chat(),n.getTextY())).collect(Collectors.toList());
     }
 }
